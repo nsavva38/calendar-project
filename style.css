@@ -62,5 +62,57 @@ header {
 }
 
 .nav-btn-container {
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.nav-btn {
+  font-size: 1.5rem;
+  background-color: none;
+  border: none;
+  cursor: pointer;
+  color: var(--primary-dark);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+/* mobile grid */
+@media (max-width: 1024px) {
+  .calendar-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 10px;
+  }
+
+  .day, .day-name {
+    min-width: 140px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+}
+
+.day, .day-name {
+  text-align: center;
+}
+
+.day {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  min-height: 100px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
