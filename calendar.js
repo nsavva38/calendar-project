@@ -33,7 +33,7 @@ const renderCalendar = (date = new Date()) => {
 
   // loop through days
   for (let day = 1; day <= totalDays; day++) {
-    const dateString = `${year}-${String(month+1).padStart(2, "0")}-${String(day).padStart(2, "0")}}`;
+    const dateString = `${year}-${String(month+1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
     const cell = document.createElement("div");
     cell.className = "day";
@@ -156,6 +156,10 @@ const openModalForEdit = (eventsOnDate) => {
 
   if(eventsOnDate.length > 1) {
     wrapper.style.display = "block";
+
+    selector.onchange = (e) => {
+      handleEventSelection(e.target.value);
+    }
   } else {
     wrapper.style.display = "none";
   }

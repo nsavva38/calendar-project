@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && ($_POST["action"] ?? "") === "delete
   $id = $_POST["event_id"] ?? null;
 
   if ($id) {
-    $statement = conn->prepare("DELETE FROM appointments WHERE id = ?");
+    $statement = $conn->prepare("DELETE FROM appointments WHERE id = ?");
     $statement->bind_param("i", $id);
     $statement->execute();
     $statement->close();
@@ -90,7 +90,7 @@ if(isset($_GET["success"])) {
   };
 }
 
-if(isset($_GET["errpr"])) {
+if(isset($_GET["error"])) {
   $errorMsg = "Error occured. Please check your input";
 }
 

@@ -9,16 +9,22 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Calendar Project</title>
-    <meta name="description" content="My Own Calendar Project"/>
+    <meta name="description" content="My Own Calendar Project">
     <link href="https://fonts.googleapis.com/css2?family=inter:wght@400;600;700&display=sawp" rel="stylesheet">
     <link rel="stylesheet" href="style.css"/>
-    <script src="calendar.js" defer></script>
   </head>
 
   <body>
     <header>
       <h1>🗓️ Calendar<br> My Calendar Project</h1>
     </header>
+
+    <?php if ($successMsg): ?>
+      <div class="alert success"><?= $successMsg ?></div>
+    <?php elseif ($errorMsg): ?>
+      <div class="alert error"><?= $errorMsg ?></div>
+    <?php endif; ?>
+
     <!-- Clock -->
     <div class="clock-container">
       <div id="clock"></div>
@@ -27,9 +33,9 @@
     <!--Calendar-->
     <div class="calendar">
       <div class="nav-btn-container">
-        <button class="nav-btn" >⏮️</button> <!--onclick="changeMonth(-1)"-->
+        <button class="nav-btn" onclick="changeMonth(-1)">⏮️</button> <!--onclick="changeMonth(-1)"-->
         <h2 id="monthYear" style="margin: 0"></h2>
-        <button class="nav-btn">⏭️</button>
+        <button class="nav-btn" onclick="changeMonth(1)">⏭️</button>
       </div>
 
       <div class="calendar-grid" id="calendar"></div>
@@ -77,18 +83,19 @@
         <!--Delete Form-->
         <form method="POST" onsubmit="return confirm(`Are you sure you want to delete this appointment?`)">
           <input type="hidden" name="action" value="delete">
-          <input type="hidden" name="event_id" value="deleteEventID">
+          <input type="hidden" name="event_id" id="deleteEventID">
           <button type="submit" class="submit-btn">🗑️ Delete</button>
         </form>
 
         <!-- Cancel -->
-        <button type="button" class="submit-btn">❌ Cancel</button>
+        <button type="button" class="submit-btn" onclick="closeModal()">❌ Cancel</button>
 
       </div>
     </div>
     <script>
       const events = <?= json_encode($eventsFromDB, JSON_UNESCAPED_UNICODE);?>
     </script>
+    <script src="calendar.js"></script>
   </body>
 
 </html>
