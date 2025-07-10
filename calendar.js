@@ -68,7 +68,7 @@ const renderCalendar = (date = new Date()) => {
 
       const timeEL = document.createElement("div");
       timeEL.className = "time";
-      timeEL.textContent = "⏰" + event.start_time + " - " + event.end_time();
+      timeEL.textContent = "⏰" + event.start_time + " - " + event.end_time;
 
       ev.appendChild(courseEL);
       ev.appendChild(instructorEL);
@@ -168,7 +168,7 @@ const handleEventSelection = (eventJSON) => {
   const event = JSON.parse(eventJSON);
   
   document.querySelector("#eventID").value = event.id;
-  document.querySelector("#deleteEventID") = event.id;
+  document.querySelector("#deleteEventID").value = event.id;
 
   const [course, instructor] = event.title.split(" - ").map(ev => ev.trim());
   document.querySelector("#courseName").value = course || "";

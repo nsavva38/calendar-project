@@ -1,3 +1,7 @@
+<?php
+  include "calendar.php";
+?>
+
 <!DOCTYPE html>
 <html lang="eng" dir="ltr">
 
@@ -82,6 +86,9 @@
 
       </div>
     </div>
+    <script>
+      const events = <?= json_encode($eventsFromDB, JSON_UNESCAPED_UNICODE);?>
+    </script>
   </body>
 
 </html>
